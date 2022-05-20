@@ -1,5 +1,11 @@
 # Sensorpush to Datadog
 
+## Requirements
+- [Serverless Framework](https://www.serverless.com/framework/docs)
+- A [Datadog](https://www.datadoghq.com/) Account and API Key
+- An AWS Account with Admin access configured in a local profile
+- A SensorPush account (and ideally some sensors!)
+
 ## Configure
 
 Start by making a copy of `serverless.example.yml` to `serverless.yml`. In your new file, set your `awsProfile` 
