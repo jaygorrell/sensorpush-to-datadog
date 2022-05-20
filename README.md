@@ -12,7 +12,7 @@ Start by making a copy of `serverless.example.yml` to `serverless.yml`. In your 
 (if not using `default`) and your `awsRegion`.
 
 ### Datadog Secret
-> For other options, see the [serverless-plguin-datadog](https://www.serverless.com/plugins/serverless-plugin-datadog) page.
+> For other options, see the [serverless-plugin-datadog](https://www.serverless.com/plugins/serverless-plugin-datadog) page.
 
 1. Using AWS Secrets Manager, create a plaintext secret containing the API key to your Datadog environment.
 2. Set the `datadogSecret` value to the ARN of the secret created above by replacing the `DATADOG_SECRET_ARN` placeholder.
