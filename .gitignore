@@ -1,0 +1,6 @@
+/.idea
+/.serverless
+/node_modules
+
+bootstrap
+serverless.yml

@@ -1,0 +1,47 @@
+service: sensorpush-to-datadog
+frameworkVersion: '3'
+
+params:
+  default:
+    awsProfile: default
+    awsRegion: us-east-2
+    scheduleEnabled: false
+    datadogSecret: 'DATADOG_SECRET_ARN'
+    sensorpushSecret: 'SENSORPUSH_SECRET_ARN'
+  prod:
+    scheduleEnabled: true
+
+provider:
+  name: aws
+  region: ${param:awsRegion}
+  stage: dev
+  profile: ${param:awsProfile}
+  runtime: provided.al2
+  memorySize: 128
+  iam:
+    role:
+      statements:
+        - Effect: 'Allow'
+          Action:
+            - 'secretsmanager:GetSecretValue'
+          Resource:
+            - ${param:datadogSecret}
+            - ${param:sensorpushSecret}
+
+functions:
+  tempHandler:
+    handler: bootstrap
+    environment:
+      REGION: ${param:awsRegion}
+      AWS_SENSORPUSH_SECRET: ${param:sensorpushSecret}
+    events:
+      - schedule:
+          rate: rate(1 minute)
+          enabled: ${strToBool(${param:scheduleEnabled})}
+
+plugins:
+  - serverless-plugin-datadog
+
+custom:
+  datadog:
+    apiKeySecretArn: ${param:datadogSecret}

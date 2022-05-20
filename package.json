@@ -1,0 +1,10 @@
+{
+  "name": "sensorpush-to-datadog",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "serverless-plugin-datadog": "^5.0.0"
+  }
+}
